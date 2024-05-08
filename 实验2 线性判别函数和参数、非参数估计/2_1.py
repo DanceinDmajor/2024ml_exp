@@ -57,6 +57,4 @@ plt.colorbar(label='Class')
 plt.xlim(np.min(X[:, 0]) - 0.5, np.max(X[:, 0]) + 0.5)
 plt.ylim(np.min(X[:, 1]) - 0.5, np.max(X[:, 1]) + 0.5)
 
-plt.savefig('2_1.png')
 plt.show()
-

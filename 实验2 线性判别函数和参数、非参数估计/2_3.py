@@ -92,9 +92,7 @@ def kNN_density_1d(data, feature, k_values):
         plt.xlabel(feature)
         plt.ylabel('概率密度')
         plt.title(f'类别 3 的概率密度估计 - {feature} - k={k}')
-        plt.savefig('2_3_1d_'+str(k)+'.png')
         plt.show()
-
 
 # 二维 k-近邻概率密度估计
 def kNN_density_2d(data, feature1, feature2, k_values):
@@ -122,7 +120,6 @@ def kNN_density_2d(data, feature1, feature2, k_values):
         ax.set_ylabel(feature2)
         ax.set_zlabel('概率密度')
         ax.set_title(f'类别 2 的概率密度估计 - k={k}')
-        plt.savefig('2_3_2d_'+str(k)+'.png')
         plt.show()
 
 
