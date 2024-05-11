@@ -8,6 +8,8 @@ data = pd.read_excel('exp2_2.xlsx', header=[0, 1])
 class1_data = data['类1']
 class2_data = data['类2']
 
+# (1) 对类1和类2中的三个特征分别求解最大似然估计的均值和方差
+
 # 计算类别1中每个特征的均值和方差
 class1_mean = class1_data.mean()
 class1_variance = class1_data.var()
@@ -26,6 +28,9 @@ print("\n类别2 中的均值和方差：")
 for feature in class2_data.columns:
     print(f"特征 {feature} 的均值：\n", class2_mean[feature])
     print(f"特征 {feature} 的方差：\n", class2_variance[feature])
+
+# (2) 对类别1和类别2中任意两个特征的组合分别求解最大似然估计的均值和协方差矩阵
+
 # 定义函数来计算均值和协方差矩阵
 def estimate_mean_covariance(data):
     mean = data.mean()
@@ -51,6 +56,9 @@ compute_feature_combinations(class1_data)
 # 计算类别2中任意两个特征的组合的均值和协方差矩阵
 print("类别2 中任意两个特征的组合的均值和协方差矩阵：")
 compute_feature_combinations(class2_data)
+
+# (3) 对类别1和类别2中三个特征的组合分别求解最大似然估计的均值和协方差矩阵
+
 # 计算类别1中三个特征的均值和协方差矩阵
 class1_mean, class1_covariance = estimate_mean_covariance(class1_data)
 print("类别1 中三个特征的均值：\n", class1_mean)
@@ -60,6 +68,8 @@ print("\n类别1 中三个特征的协方差矩阵：\n", class1_covariance)
 class2_mean, class2_covariance = estimate_mean_covariance(class2_data)
 print("\n类别2 中三个特征的均值：\n", class2_mean)
 print("\n类别2 中三个特征的协方差矩阵：\n", class2_covariance)
+
+# (4) 假设该三维高斯模型是可分离的，即Σ = diag(σ1^2, σ2^2, σ3^2)，编写程序估计类1和类2中的均值和协方差矩阵中的参数
 
 # 定义函数来计算均值和对角协方差矩阵的参数
 def estimate_mean_diagonal_covariance_params(data):
