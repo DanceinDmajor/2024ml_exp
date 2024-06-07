@@ -21,14 +21,12 @@ X = (X - X_mean) / X_std
 # 给数据添加一列常数项1，用于计算偏置b
 X = np.hstack((X, np.ones((X.shape[0], 1))))
 
-
 # 定义线性SVM的损失函数
 def hinge_loss(W, X, Y, C):
     distances = 1 - Y * np.dot(X, W)
     distances[distances < 0] = 0  # max(0, distance)
-    hinge_loss = C * (np.sum(distances))
+    hinge_loss = C * np.sum(distances)
     return 0.5 * np.dot(W, W) + hinge_loss
-
 
 # 定义线性SVM的梯度
 def hinge_loss_gradient(W, X, Y, C):
@@ -43,7 +41,6 @@ def hinge_loss_gradient(W, X, Y, C):
     dw = dw / len(Y)  # average
     return dw
 
-
 # 梯度下降法训练线性SVM
 def gradient_descent(X, Y, C=1, learning_rate=0.001, max_epochs=1000):
     W = np.zeros(X.shape[1])
@@ -54,10 +51,8 @@ def gradient_descent(X, Y, C=1, learning_rate=0.001, max_epochs=1000):
             print(f'Epoch {epoch}, Loss: {hinge_loss(W, X, Y, C)}')
     return W
 
-
 # 训练模型
-W = gradient_descent(X, Y, C=81, learning_rate=0.30, max_epochs=1000)
-
+W = gradient_descent(X, Y, C=1, learning_rate=0.001, max_epochs=1000)
 
 # 可视化划分边界
 def plot_decision_boundary(W, X, Y):
@@ -70,9 +65,8 @@ def plot_decision_boundary(W, X, Y):
 
     plt.xlabel('x1')
     plt.ylabel('x2')
-    plt.title('Linear SVM Decision Boundary')
+    plt.title('Linear SVM Decision Boundary with Soft Margin')
     plt.show()
-
 
 # 创建可视化
 plot_decision_boundary(W, X, Y)
